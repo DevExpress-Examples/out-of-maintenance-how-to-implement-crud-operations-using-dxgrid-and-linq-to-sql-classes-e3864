@@ -1,0 +1,72 @@
+﻿<Window x:Class="LINQServer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+                xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:dxsm="clr-namespace:DevExpress.Xpf.Core.ServerMode;assembly=DevExpress.Xpf.Core.v13.1"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:local="clr-namespace:LINQServer"
+        xmlns:crud="clr-namespace:LINQServer;assembly=CRUDBehavior"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <DataTemplate x:Key="EditRecordTemplate">
+            <StackPanel Margin="8" MinWidth="200">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="ID:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,6,4" />
+                    <dxe:TextEdit x:Name="txtID" Grid.Row="0" Grid.Column="1" EditValue="{Binding Path=Id, Mode=TwoWay}" Margin="0,0,0,4" />
+                    <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,6,4" />
+                    <dxe:TextEdit x:Name="txtCompany" Grid.Row="1" Grid.Column="1" EditValue="{Binding Path=Name, Mode=TwoWay}" Margin="0,0,0,4" />
+                </Grid>
+            </StackPanel>
+        </DataTemplate>
+        <local:DataClassesDataContext x:Key="DataClassesDataContext" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <dxg:GridControl x:Name="grid" SelectionMode="Row">
+            <i:Interaction.Behaviors>
+                <crud:LINQServerModeCRUDBehavior x:Name="helper"
+                                  NewRowForm="{StaticResource ResourceKey=EditRecordTemplate}"
+                                  EditRowForm="{StaticResource ResourceKey=EditRecordTemplate}"
+                                  RowType="{x:Type local:Item}"
+                                  DataContext="{Binding Source={StaticResource DataClassesDataContext}}">
+                    <crud:LINQServerModeCRUDBehavior.DataSource>
+                        <dxsm:LinqServerModeDataSource KeyExpression="Id" QueryableSource="{Binding Items, Source={StaticResource DataClassesDataContext}}" />
+                    </crud:LINQServerModeCRUDBehavior.DataSource>
+                </crud:LINQServerModeCRUDBehavior>
+            </i:Interaction.Behaviors>
+            <dxg:GridControl.Columns>
+                <dxg:GridColumn FieldName="Id">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings AllowNullInput="False" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn FieldName="Name">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings AllowNullInput="False" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+            </dxg:GridControl.Columns>
+            <dxg:GridControl.View>
+                <dxg:TableView Name="view" AutoWidth="True" NavigationStyle="Row" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Height="22" Width="60" Command="{Binding Path=NewRowCommand, ElementName=helper}">Add</Button>
+            <Button Height="22" Width="60" Command="{Binding Path=RemoveRowCommand, ElementName=helper}" Margin="6,0,6,0">Remove</Button>
+            <Button Height="22" Width="60" Command="{Binding Path=EditRowCommand, ElementName=helper}">Edit</Button>
+        </StackPanel>
+    </Grid>
+</Window>
