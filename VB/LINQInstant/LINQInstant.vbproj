@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -55,27 +55,21 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v13.2, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Data.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Mvvm.v13.2, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Xpf.Mvvm.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Core.v13.2, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Xpf.Core.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Printing.v13.2, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Xpf.Printing.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v13.2, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Xpf.Grid.v13.2.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.Xpf.Grid.v13.2.Core, Version=13.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <Private>True</Private>
-      <HintPath>c:\Projects\Test_Examples\TestFolder\Dlls\13.2.5\DevExpress.Xpf.Grid.v13.2.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
