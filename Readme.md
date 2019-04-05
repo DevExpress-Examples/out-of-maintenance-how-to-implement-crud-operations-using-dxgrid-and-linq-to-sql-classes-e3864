@@ -4,10 +4,10 @@
 * [CRUDBehaviorBase.cs](./CS/CRUDBehavior/CRUDBehaviorBase.cs) (VB: [CRUDBehaviorBase.vb](./VB/CRUDBehavior/CRUDBehaviorBase.vb))
 * [LINQInstantModeCRUDBehavior.cs](./CS/CRUDBehavior/LINQInstantModeCRUDBehavior.cs) (VB: [LINQInstantModeCRUDBehavior.vb](./VB/CRUDBehavior/LINQInstantModeCRUDBehavior.vb))
 * [LINQServerModeCRUDBehavior.cs](./CS/CRUDBehavior/LINQServerModeCRUDBehavior.cs) (VB: [LINQServerModeCRUDBehavior.vb](./VB/CRUDBehavior/LINQServerModeCRUDBehavior.vb))
-* [MainWindow.xaml](./CS/LINQInstant/MainWindow.xaml) (VB: [MainWindow.xaml.vb](./VB/LINQInstant/MainWindow.xaml.vb))
+* [MainWindow.xaml](./CS/LINQInstant/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/LINQInstant/MainWindow.xaml))
 * [MainWindow.xaml.cs](./CS/LINQInstant/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/LINQInstant/MainWindow.xaml.vb))
 * [MainWindow.xaml](./CS/LINQServer/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/LINQServer/MainWindow.xaml))
-* [MainWindow.xaml.cs](./CS/LINQServer/MainWindow.xaml.cs) (VB: [MainWindow.xaml](./VB/LINQServer/MainWindow.xaml))
+* [MainWindow.xaml.cs](./CS/LINQServer/MainWindow.xaml.cs) (VB: [MainWindow.xaml.vb](./VB/LINQServer/MainWindow.xaml.vb))
 <!-- default file list end -->
 # How to implement CRUD operations using DXGrid and LINQ to SQL Classes
 
