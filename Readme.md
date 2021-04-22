@@ -11,6 +11,7 @@
 <!-- default file list end -->
 # How to implement CRUD operations using DXGrid and LINQ to SQL Classes
 
+Refer to the latest example that illustrates how to implement CRUD operations in a data-bound [GridControl](https://docs.devexpress.com/WPF/DevExpress.Xpf.Grid.GridControl): [https://github.com/DevExpress-Examples/how-to-implement-crud-operations](https://github.com/DevExpress-Examples/how-to-implement-crud-operations).
 
 <p>This example shows how to use LinqInstantFeedbackDataSource or LinqServerModeDataSource with DXGrid, and how to implement CRUD operations (e.g., add, remove, edit) in your application via special behavior.</p><p><strong>Note</strong> that the test sample requires the SQL Express service to be installed on your machine.</p><p>We have created the LINQServerModeCRUDBehavior and LINQInstantModeCRUDBehavior attached behaviors for GridControl. For instance: </p>
 
