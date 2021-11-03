@@ -27,11 +27,7 @@ namespace LINQInstant {
                 var key = (int)e.Key;
                 item = context.Items.Single(x => x.Id == key);
             }
-            e.ViewModel = new EditItemViewModel(
-                item,
-                context,
-                title: (e.IsNewItem ? "New " : "Edit ") + nameof(Item)
-            );
+            e.ViewModel = new EditItemViewModel(item, context);
         }
 
         void OnValidateRow(System.Object sender, DevExpress.Mvvm.Xpf.EditFormRowValidationArgs e) {
