@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        xmlns:dxsm="clr-namespace:DevExpress.Xpf.Core.ServerMode;assembly=DevExpress.Xpf.Core.v13.2"
+        xmlns:dxsm="clr-namespace:DevExpress.Xpf.Core.ServerMode;assembly=DevExpress.Xpf.Core.v21.2"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:local="clr-namespace:LINQServer"

@@ -10,8 +10,8 @@ using System.Data.Linq;
 using DevExpress.Xpf.Core;
 using System.Windows.Controls;
 using DevExpress.Xpf.Bars;
-using DevExpress.Xpf.Mvvm;
-using DevExpress.Xpf.Mvvm.UI.Interactivity;
+using DevExpress.Mvvm;
+using DevExpress.Mvvm.UI.Interactivity;
 
 namespace CRUDBehaviorBase {
     public class CRUDBehaviorBase: Behavior<GridControl> {
