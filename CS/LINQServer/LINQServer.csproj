@@ -54,12 +54,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Images.v21.2" />
     <Reference Include="DevExpress.Data.v21.2" />
     <Reference Include="DevExpress.Mvvm.v21.2" />
     <Reference Include="DevExpress.Xpf.Core.v21.2" />
     <Reference Include="DevExpress.Xpf.Printing.v21.2" />
     <Reference Include="DevExpress.Xpf.Grid.v21.2" />
     <Reference Include="DevExpress.Xpf.Grid.v21.2.Core" />
+    <Reference Include="DevExpress.Xpf.Grid.v21.2.Extensions" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
@@ -180,12 +182,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CRUDBehavior\CRUDBehavior.csproj">
-      <Project>{250F0CDB-E691-4D2D-8D15-CA82FB90194D}</Project>
-      <Name>CRUDBehavior</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

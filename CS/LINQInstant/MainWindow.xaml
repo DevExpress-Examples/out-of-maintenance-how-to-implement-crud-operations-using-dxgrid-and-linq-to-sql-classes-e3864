@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
         xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        xmlns:dxsm="clr-namespace:DevExpress.Xpf.Core.ServerMode;assembly=DevExpress.Xpf.Core.v21.2"
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:local="clr-namespace:LINQInstant"
-        xmlns:crud="clr-namespace:LINQInstant;assembly=CRUDBehavior"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
         <DataTemplate x:Key="EditRecordTemplate">
@@ -22,52 +21,44 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <TextBlock Text="ID:" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="0,0,6,4" />
-                    <dxe:TextEdit x:Name="txtID" Grid.Row="0" Grid.Column="1" EditValue="{Binding Path=Id, Mode=TwoWay}" Margin="0,0,0,4" />
+                    <dxe:TextEdit x:Name="txtID" Grid.Row="0" Grid.Column="1" EditValue="{Binding Path=Item.Id, Mode=TwoWay}" Margin="0,0,0,4" />
                     <TextBlock Text="Name:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,6,4" />
-                    <dxe:TextEdit x:Name="txtCompany" Grid.Row="1" Grid.Column="1" EditValue="{Binding Path=Name, Mode=TwoWay}" Margin="0,0,0,4" />
+                    <dxe:TextEdit x:Name="txtCompany" Grid.Row="1" Grid.Column="1" EditValue="{Binding Path=Item.Name, Mode=TwoWay}" Margin="0,0,0,4" />
                 </Grid>
             </StackPanel>
         </DataTemplate>
-        <local:DataClasses1DataContext x:Key="DataClassesDataContext" />
     </Window.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <dxg:GridControl x:Name="grid" SelectionMode="Row">
-            <dxmvvm:Interaction.Behaviors>
-                <crud:LINQInstantModeCRUDBehavior x:Name="helper"
-                                  NewRowForm="{StaticResource ResourceKey=EditRecordTemplate}"
-                                  EditRowForm="{StaticResource ResourceKey=EditRecordTemplate}"
-                                  RowType="{x:Type local:Item}"
-                                  DataContext="{StaticResource DataClassesDataContext}"
-                                  AllowKeyDownActions="True">
-                    <crud:LINQInstantModeCRUDBehavior.DataSource>
-                        <dxsm:LinqInstantFeedbackDataSource KeyExpression="Id" QueryableSource="{Binding Items, Source={StaticResource DataClassesDataContext}}" />
-                    </crud:LINQInstantModeCRUDBehavior.DataSource>
-                </crud:LINQInstantModeCRUDBehavior>
-            </dxmvvm:Interaction.Behaviors>
-            <dxg:GridControl.Columns>
-                <dxg:GridColumn FieldName="Id">
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:TextEditSettings AllowNullInput="False" />
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="Name">
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:TextEditSettings AllowNullInput="False" />
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
-            </dxg:GridControl.Columns>
+        <dxb:ToolBarControl>
+            <dxb:BarButtonItem Content="Refresh (F5)" Command="{Binding View.Commands.RefreshDataSource, ElementName=grid}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Refresh.svg}" BarItemDisplayMode="ContentAndGlyph" />
+            <dxb:BarButtonItem Content="Edit (F2)" Command="{Binding UpdateCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Edit.svg}" BarItemDisplayMode="ContentAndGlyph" />
+            <dxb:BarButtonItem Content="New" Command="{Binding CreateCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Add.svg}" BarItemDisplayMode="ContentAndGlyph" />
+            <dxb:BarButtonItem Content="Delete (Del)" Command="{Binding DeleteCommand, ElementName=EditFormBehavior}" Glyph="{dx:DXImage SvgImages/Icon Builder/Actions_Delete.svg}" BarItemDisplayMode="ContentAndGlyph" />
+        </dxb:ToolBarControl>
+        <dxg:GridControl x:Name="grid" Grid.Row="1">
             <dxg:GridControl.View>
-                <dxg:TableView Name="view" AutoWidth="True" NavigationStyle="Row" />
+                <dxg:TableView ShowFixedTotalSummary="True" RowDoubleClickCommand="{Binding RowDoubleClickCommand, ElementName=EditFormBehavior}" NavigationStyle="Row" />
             </dxg:GridControl.View>
+            <dxg:GridColumn FieldName="Id" IsSmart="True" ReadOnly="True" />
+            <dxg:GridColumn FieldName="Name" IsSmart="True" />
+            <dxg:GridControl.TotalSummary>
+                <dxg:GridSummaryItem SummaryType="Count" Alignment="Right" />
+            </dxg:GridControl.TotalSummary>
+            <dxmvvm:Interaction.Behaviors>
+                <dxg:DialogEditFormBehavior x:Name="EditFormBehavior" KeyProperty="Id" 
+                                            CreateEditItemViewModel="OnCreateEditEntityViewModel" ValidateRow="OnValidateRow" 
+                                            ValidateRowDeletion="OnValidateRowDeletion"
+                                            EditTemplate="{StaticResource EditRecordTemplate}"/>
+            </dxmvvm:Interaction.Behaviors>
+            <dxg:GridControl.InputBindings>
+                <KeyBinding Command="{Binding DeleteCommand, ElementName=EditFormBehavior}" Key="Delete" />
+                <KeyBinding Command="{Binding UpdateCommand, ElementName=EditFormBehavior}" Key="F2" />
+                <KeyBinding Command="{Binding CreateCommand, ElementName=EditFormBehavior}" Key="N" Modifiers="Control" />
+            </dxg:GridControl.InputBindings>
         </dxg:GridControl>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Height="22" Width="60" Command="{Binding Path=NewRowCommand, ElementName=helper}">Add</Button>
-            <Button Height="22" Width="60" Command="{Binding Path=RemoveRowCommand, ElementName=helper}" Margin="6,0,6,0">Remove</Button>
-            <Button Height="22" Width="60" Command="{Binding Path=EditRowCommand, ElementName=helper}">Edit</Button>
-        </StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
     </Grid>
 </Window>
